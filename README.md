@@ -1,4 +1,3 @@
-
 # Lavandería “El Limoncito”
 
 
@@ -11,14 +10,14 @@ No hay pagos ni inventario: solo tomar la orden, calcular y confirmar para agili
 
 # Primer paso: Extraer requerimentos funcionales del relato.
 
-RF1. Registrar el cliente (Nombre, Telefono).
-RF2. Crear una orden que este EN_CREACION.
-RF3. Agregar Item de la orden (producto y cantidad).
-RF4. Utilizar precio por cantidad si este es >= 5 item dejado.
-RF5. Calcular del total de la orden (la suma de los subtotales y, si el total bruto es > $60.000 se le aplicara un descuento del 5%).
-RF6. Confirmar pedido -- estado CONFIRMADO, despues de confirmado esto no se puede cambiar.
-RF7. Validar de cantidades > 0, y que los totales no sean negativos.
-RF8. Lista del resumen (cliente, detalle con precio aplicado, total bruto, recargo, descuento y total final).
+RF1. El sistema debe permitir registrar el cliente (Nombre, Telefono).
+RF2. El sistema debe permitir Crear una orden que este EN_CREACION.
+RF3. El sistema debe permitir agregar Item de la orden (producto y cantidad).
+RF4. El sistema debe permitir utilizar precio por cantidad si este es >= 5 item dejado.
+RF5. El sistema debe permitir calcular del total de la orden (la suma de los subtotales y, si el total bruto es > $60.000 se le aplicara un descuento del 5%).
+RF6. EL sistema debe permitir confirmar pedido -- estado CONFIRMADO, despues de confirmado esto no se puede cambiar.
+RF7. El sistema debe permitir validar de cantidades > 0, y que los totales no sean negativos.
+RF8. El sistema debe mostrar un resumen detallado (cliente, detalle con precio aplicado, total bruto, recargo, descuento y total final).
 
 # Segundo paso: Reglas del negocio.
 
@@ -32,17 +31,38 @@ RF8. Lista del resumen (cliente, detalle con precio aplicado, total bruto, recar
 
 # Tercer paso: Criterios de aceptacion.
 
-CA1. Cantidad: si camisa dejadas x6, cuando calculo subtotal utilizo $3.500 c/u (no $4.000).
-CA2. Aumento: Dada una orden con total bruto de $50.000 y servicio expres, cuando calcule total final sera $55.000.
-CA3. Descuento: Dada una orden con total bruto de $62.000, cuando calcule total final sera $58.900.
-CA4. Bloqueo: Dada orden CONFIRMADO, cuando intente agragar item, se rechaza la peticion.
-CA5. Validacion: Dado cantidad 0 o negativa, cuando agrego item, entonces se rechaza la accion.
-CA6. Resumen: Dada una orde valida, cuando se pida el resumen, entonces se muestra los items con 
-     cliente, detalle con precio aplicado, total bruto, recargo, descuento y total final.
+CA1. Dado que existe un cliente registrado cuando el usuario crea una orden entonces la orden debe quedar asociada al cliente 
+CA2. Dado que existe una orden pendiente cuando se agrega un item con una cantidad valida entonces el sistema debe registrarse el servicio, la cantidad, el precio unitario y su subtotal 
+CA3. Dado la orden esta pendiente cuando el usuario activa el servicio expres entonces la orden debe marcarse como expres y debe sumar el recargo corespondiente al total final.
+CA4. Dado una orden con uno o varios servicios cuando el sistema calcula los costos entonces debe generar totalbruto, descuento aplicado, recargo expres, total final.
+CA5. Dado que la orden esta pendiente cuando el usuario confirme la orden entonces el estado debe cambiar a confirmada y no debe permitir mas modificaciones 
+CA6. Dado una orden valida cuando el usuario solicite el resumen entonces el sistema debe mostrar un texto con cliente, servicios, costos y total final
+
+# Cuarto paso: Diseño uml 
 
 
+![alt text](/src/assets/image.png)
 
 
+# Quinto paso: Arquitectura modular 
+![alt text](/src/assets/image-1.png)
 
+# Sexto paso: pruebas por criterio CON CADA IMAGEN 
 
+CA1
+![alt text](/src/assets/image-2.png)
 
+CA2
+![alt text](/src/assets/image-3.png)
+CA3
+![alt text](/src/assets/image-4.png)
+![alt text](/src/assets/image-5.png)
+
+CA4 
+![alt text](/src/assets/image-6.png)
+
+CA5 
+![alt text](/src/assets/image-7.png)
+
+CA6
+![alt text](/src/assets/image-8.png)
